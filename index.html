@@ -57,7 +57,7 @@
         <section class="mb-4">
             <div class="flex justify-between">
                 <h1 class="text-[20px] font-semibold text-[#002C5C] mb-6">Available Jobs</h1>
-                <p>8 jobs</p>
+                <p id="availableJobCount">8 jobs</p>
             </div>
             <div id="toggleBtn" class="flex gap-2">
                 <button onclick="toggleStyle('allFilterBtn')" id="allFilterBtn" class="btn bg-blue-500 text-white">All</button>
@@ -66,8 +66,10 @@
             </div>
         </section>
 
-        <section id="filtered-section hidden">
+        <section id="filtered-section" class="container space-y-5 hidden">
+        </section>
 
+        <section id="filtered-section-rejected" class="container space-y-5 hidden">
         </section>
 
         <section id="no-job-container" class="bg-white rounded-[8px] py-28 mb-5 hidden">
@@ -216,7 +218,6 @@
                     <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
-
         </section>
     </main>
 

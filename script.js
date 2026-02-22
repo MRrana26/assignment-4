@@ -8,13 +8,16 @@ let rejectedCount = document.getElementById('rejected-count');
 const allFilterBtn = document.getElementById('allFilterBtn');
 const interviewFilterBtn = document.getElementById('interviewFilterBtn');
 const rejectedFilterBtn = document.getElementById('rejectedFilterBtn');
+const noJobContainer = document.getElementById('no-job-container');
 
 const allCards = document.getElementById('all-cards');
 const filteredSection = document.getElementById('filtered-section');
+const availableJobCount = document.getElementById('availableJobCount');
 
 
 function calculateCount() {
     totalCount.innerText = allCards.children.length;
+    availableJobCount.innerText = allCards.children.length + ' jobs';
     interviewCount.innerText = interviewList.length;
     rejectedCount.innerText = rejectedList.length;
 }
@@ -35,13 +38,39 @@ function toggleStyle(id) {
     selected.classList.remove('bg-gray-300', 'text-black');
     selected.classList.add('bg-blue-500', 'text-white');
 
-    if(id == 'interviewFilterBtn'){
+    if(id === 'interviewFilterBtn'){
         allCards.classList.add('hidden');
         filteredSection.classList.remove('hidden');
+        if (interviewList.length === 0){
+            noJobContainer.classList.remove('hidden');
+        }
+        if(interviewList.length !== 0){
+            availableJobCount.innerText = interviewList.length + " of " + allCards.children.length + ' jobs';
+        } else{
+            availableJobCount.innerText = '0 jobs'
+        }
     
-    } else if(id == 'allFilterBtn'){
+    } else if(id === 'allFilterBtn'){
         allCards.classList.remove('hidden');
         filteredSection.classList.add('hidden');
+        if (allCards.children.length !== 0){
+            noJobContainer.classList.add('hidden');
+        }
+        availableJobCount.innerText = allCards.children.length + ' jobs';
+
+    } else if(id === 'rejectedFilterBtn'){
+        allCards.classList.add('hidden');
+        filteredSection.classList.remove('hidden');
+        if (rejectedList.length === 0){
+            noJobContainer.classList.remove('hidden');
+        }
+        if(rejectedList.length !== 0){
+            availableJobCount.innerText = rejectedList.length + " of " + allCards.children.length + ' jobs';
+        } else{
+            availableJobCount.innerText = '0 jobs'
+        }
+
+
     }
 }
 
@@ -55,45 +84,104 @@ allCards.addEventListener('click', function (event) {
         const badgeBtn = parentNode.querySelector('.badgeBtn').innerText;
         const description = parentNode.querySelector('.description').innerText;
 
+        parentNode.querySelector('.badgeBtn').innerText = 'Interview';
+        parentNode.querySelector('.badgeBtn').className = 'btn btn-outline btn-success bg-[#EEF4FF] text-[16px] py-2 px-5 rounded-sm'
+        
         const cardInfo = {
             companyName,
             position,
             salaryAndType,
-            badgeBtn,
+            badgeBtn: 'Interview',
             description
         }
-
+    
         const companyNameExist = interviewList.find(item => item.companyName == cardInfo.companyName);
-        parentNode.querySelector('.badgeBtn').innerText = 'Interview';
-        parentNode.querySelector('.badgeBtn').className = 'btn btn-outline btn-success bg-[#EEF4FF] text-[16px] py-2 px-5 rounded-sm'
         
-        
-
         if (!companyNameExist) {
             interviewList.push(cardInfo);
 
         }
+        calculateCount();
         renderInterview();
+
+
+    } else if (event.target.classList.contains('btn-error')) {
+        const parentNode = event.target.parentNode.parentNode;
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const salaryAndType = parentNode.querySelector('.salaryAndType').innerText;
+        const badgeBtn = parentNode.querySelector('.badgeBtn').innerText;
+        const description = parentNode.querySelector('.description').innerText;
+
+        parentNode.querySelector('.badgeBtn').innerText = 'Rejected';
+        parentNode.querySelector('.badgeBtn').className = 'btn btn-outline btn-error bg-[#EEF4FF] text-[16px] py-2 px-5 rounded-sm'
+        
+        const cardInfo = {
+            companyName,
+            position,
+            salaryAndType,
+            badgeBtn: 'Rejected',
+            description
+        }
+    
+        const companyNameExist = interviewList.find(item => item.companyName == cardInfo.companyName);
+        
+        if (!companyNameExist) {
+            rejectedList.push(cardInfo);
+
+        }
+        calculateCount();
+        renderRejected()
     }
 });
+
 
 function renderInterview() {
     filteredSection.innerHTML = "";
 
     for (let interview of interviewList) {
-        console.log(interview)
+
         let div = document.createElement('div');
         div.className = 'p-6 bg-white rounded-lg hover:shadow shadow-teal-400';
         
         div.innerHTML = `
             <div class="flex justify-between">
                     <div class="space-y-3">
-                        <h3 class="companyName text-[18px] font-semibold text-[#002C5C]">Mobile First Corp</h3>
-                        <p class="position text-[#64748B]">React Native Developer</p>
-                        <p class="salaryAndType text=[#64748B] text-[14px]">Remote • Full-time • $130,000 - $175,000</p>
-                        <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
-                        <p class="description text-[#323B49] text-[14px]">Build cross-platform mobile applications using React
-                            Native. Work on products used by millions of users worldwide.</p>
+                        <h3 class="companyName text-[18px] font-semibold text-[#002C5C]">${interview.companyName}</h3>
+                        <p class="position text-[#64748B]">${interview.position}</p>
+                        <p class="salaryAndType text=[#64748B] text-[14px]">${interview.salaryAndType}</p>
+                        <button class="badgeBtn btn btn-outline btn-success bg-[#EEF4FF] text-[16px] font-medium py-2 px-5 rounded-sm">${interview.badgeBtn}</button>
+                        <p class="description text-[#323B49] text-[14px]">${interview.description}</p>
+                        <div class="">
+                            <button class="btn btn-outline btn-success">INTERVIEW</button>
+                            <button class="btn btn-outline btn-error">REJECTED</button>
+                        </div>
+                    </div>
+                    <div id="deleteBtn" class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                </div>
+        `
+
+        filteredSection.appendChild(div);
+    }
+}
+
+
+function renderRejected() {
+    filteredSection.innerHTML = "";
+
+    for (let rejected of rejectedList) {
+
+        let div = document.createElement('div');
+        div.className = 'p-6 bg-white rounded-lg hover:shadow shadow-teal-400';
+        
+        div.innerHTML = `
+            <div class="flex justify-between">
+                    <div class="space-y-3">
+                        <h3 class="companyName text-[18px] font-semibold text-[#002C5C]">${rejected.companyName}</h3>
+                        <p class="position text-[#64748B]">${rejected.position}</p>
+                        <p class="salaryAndType text=[#64748B] text-[14px]">${rejected.salaryAndType}</p>
+                        <button class="badgeBtn btn btn-outline btn-success bg-[#EEF4FF] text-[16px] font-medium py-2 px-5 rounded-sm">${rejected.badgeBtn}</button>
+                        <p class="description text-[#323B49] text-[14px]">${rejected.description}</p>
                         <div class="">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
