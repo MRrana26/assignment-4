@@ -12,6 +12,7 @@ const rejectedFilterBtn = document.getElementById('rejectedFilterBtn');
 const allCards = document.getElementById('all-cards');
 const filteredSection = document.getElementById('filtered-section');
 
+
 function calculateCount() {
     totalCount.innerText = allCards.children.length;
     interviewCount.innerText = interviewList.length;
@@ -33,6 +34,15 @@ function toggleStyle(id) {
 
     selected.classList.remove('bg-gray-300', 'text-black');
     selected.classList.add('bg-blue-500', 'text-white');
+
+    if(id == 'interviewFilterBtn'){
+        allCards.classList.add('hidden');
+        filteredSection.classList.remove('hidden');
+    
+    } else if(id == 'allFilterBtn'){
+        allCards.classList.remove('hidden');
+        filteredSection.classList.add('hidden');
+    }
 }
 
 allCards.addEventListener('click', function (event) {
@@ -55,6 +65,10 @@ allCards.addEventListener('click', function (event) {
 
         const companyNameExist = interviewList.find(item => item.companyName == cardInfo.companyName);
         parentNode.querySelector('.badgeBtn').innerText = 'Interview';
+        parentNode.querySelector('.badgeBtn').className = 'btn btn-outline btn-success bg-[#EEF4FF] text-[16px] py-2 px-5 rounded-sm'
+        
+        
+
         if (!companyNameExist) {
             interviewList.push(cardInfo);
 
@@ -64,7 +78,7 @@ allCards.addEventListener('click', function (event) {
 });
 
 function renderInterview() {
-    filteredSection.innerHTML = ''
+    filteredSection.innerHTML = "";
 
     for (let interview of interviewList) {
         console.log(interview)
