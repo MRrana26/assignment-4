@@ -36,18 +36,18 @@
     <header class="container w-[80%] mx-auto py-4">
         <h2 class="text-[#002C5C] font-bold text-[32px]">Job Application Tracker</h2>
         <div class="container grid grid-cols-3 gap-3 pt-4">
-            <div class="box bg-white p-5 rounded-lg">
-                <p class="text-[#323B49] font-medium pb-2">Total</p>
+            <div class="box bg-white px-5 py-2 rounded-lg">
+                <p class="text-[#323B49] font-medium pb-1">Total</p>
                 <h3 id="total" class="font-bold text-[#002C5C] text-[24px]">0</h3>
             </div>
 
-            <div class="box bg-white p-5 rounded-lg">
-                <p class="text-[#323B49] font-medium pb-2">Interview</p>
+            <div class="box bg-white px-5 py-2 rounded-lg">
+                <p class="text-[#323B49] font-medium pb-1">Interview</p>
                 <h3 id="interview-count" class="font-bold text-[#10B981] text-[24px]">0</h3>
             </div>
 
-            <div class="box bg-white p-5 rounded-lg">
-                <p class="text-[#323B49] font-medium pb-2">Rejected</p>
+            <div class="box bg-white px-5 py-2 rounded-lg">
+                <p class="text-[#323B49] font-medium pb-1">Rejected</p>
                 <h3 id="rejected-count" class="font-bold text-[#EF4444] text-[24px]">0</h3>
             </div>
         </div>
@@ -67,10 +67,9 @@
         </section>
 
         <section id="filtered-section" class="container space-y-5 hidden">
+
         </section>
 
-        <section id="filtered-section-rejected" class="container space-y-5 hidden">
-        </section>
 
         <section id="no-job-container" class="bg-white rounded-[8px] py-28 mb-5 hidden">
                 <div class="mx-auto text-center space-y-2">
@@ -83,6 +82,7 @@
         </section>
 
         <section id="all-cards" class="container space-y-5">
+            
             <div class="p-6 bg-white rounded-lg hover:shadow shadow-teal-400">
                 <div class="flex justify-between">
                     <div class="space-y-3">
@@ -96,7 +96,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div id="deleteBtn" class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -113,7 +113,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -130,7 +130,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -164,7 +164,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -181,7 +181,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -198,7 +198,7 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
 
@@ -215,9 +215,10 @@
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
             </div>
+            
         </section>
     </main>
 
