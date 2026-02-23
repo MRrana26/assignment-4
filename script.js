@@ -19,11 +19,11 @@ const deleteBtn = document.getElementsByClassName('deleteBtn');
 for (const deleteButton of deleteBtn) {
     deleteButton.addEventListener('click', function (event) {
         event.target.parentNode.parentNode.parentNode.remove();
-        console.log(event.target.parentNode.parentNode.parentNode);
+        // console.log(event.target.parentNode.parentNode.parentNode);
         totalCount.innerText = allCards.children.length;
         availableJobCount.innerText = allCards.children.length + ' jobs';
         let count = allCards.children.length;
-        if(count == 0){
+        if (count == 0) {
             noJobContainer.classList.remove('hidden');
         }
     })
@@ -97,6 +97,8 @@ function toggleStyle(id) {
             availableJobCount.innerText = '0 jobs'
         }
     }
+
+    
 }
 
 filteredSection.addEventListener('click', function (event) {
@@ -173,6 +175,14 @@ filteredSection.addEventListener('click', function (event) {
     }
 
     autoHideOrVisibleAndCount();
+
+    
+    for (const deleteButton of deleteBtn) {
+        deleteButton.addEventListener('click', function (event) {
+            event.target.parentNode.parentNode.parentNode.remove();
+            // console.log(event.target.parentNode.parentNode.parentNode);
+        })
+    }
 
 
 });
@@ -278,7 +288,7 @@ function renderInterview() {
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
         `
         filteredSection.appendChild(div);
@@ -304,7 +314,7 @@ function renderRejected() {
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
                     </div>
-                    <div class="btn rounded-full p-3"><i class="fa-solid fa-trash-can"></i></div>
+                    <div class="btn rounded-full p-3 deleteBtn"><i class="fa-solid fa-trash-can"></i></div>
                 </div>
         `
         filteredSection.appendChild(div);
