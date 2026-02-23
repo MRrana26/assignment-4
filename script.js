@@ -16,15 +16,23 @@ const filteredSection = document.getElementById('filtered-section');
 const availableJobCount = document.getElementById('availableJobCount');
 
 const deleteBtn = document.getElementsByClassName('deleteBtn');
-for(const deleteButton of deleteBtn){
-    deleteButton.addEventListener('click', function(event){
+for (const deleteButton of deleteBtn) {
+    deleteButton.addEventListener('click', function (event) {
         event.target.parentNode.parentNode.parentNode.remove();
         console.log(event.target.parentNode.parentNode.parentNode);
+        totalCount.innerText = allCards.children.length;
+        availableJobCount.innerText = allCards.children.length + ' jobs';
+        let count = allCards.children.length;
+        if(count == 0){
+            noJobContainer.classList.remove('hidden');
+        }
     })
 }
 
 if (totalCount.innerText = allCards.children.length !== 0) {
     noJobContainer.classList.add('hidden');
+} else {
+    noJobContainer.classList.remove('hidden');
 }
 
 function calculateCount() {
@@ -315,7 +323,7 @@ function autoHideOrVisibleAndCount() {
 
     if (currentStatus === 'rejectedFilterBtn') {
         availableJobCount.innerText = rejectedList.length + " of " + allCards.children.length + ' jobs';
-    }else if (currentStatus === 'interviewFilterBtn') {
+    } else if (currentStatus === 'interviewFilterBtn') {
         availableJobCount.innerText = interviewList.length + " of " + allCards.children.length + ' jobs';
     }
 }
