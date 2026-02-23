@@ -15,6 +15,18 @@ const allCards = document.getElementById('all-cards');
 const filteredSection = document.getElementById('filtered-section');
 const availableJobCount = document.getElementById('availableJobCount');
 
+const deleteBtn = document.getElementsByClassName('deleteBtn');
+for(const deleteButton of deleteBtn){
+    deleteButton.addEventListener('click', function(event){
+        event.target.parentNode.parentNode.parentNode.remove();
+        console.log(event.target.parentNode.parentNode.parentNode);
+    })
+}
+
+if (totalCount.innerText = allCards.children.length !== 0) {
+    noJobContainer.classList.add('hidden');
+}
+
 function calculateCount() {
     totalCount.innerText = allCards.children.length;
     availableJobCount.innerText = allCards.children.length + ' jobs';
@@ -45,12 +57,12 @@ function toggleStyle(id) {
         filteredSection.classList.remove('hidden');
         noJobContainer.classList.add('hidden');
         renderInterview();
-        if(interviewList.length == 0){
+        if (interviewList.length == 0) {
             noJobContainer.classList.remove('hidden');
         }
         if (interviewList.length !== 0) {
             availableJobCount.innerText = interviewList.length + " of " + allCards.children.length + ' jobs';
-            
+
         } else {
             availableJobCount.innerText = '0 jobs'
         }
@@ -78,6 +90,86 @@ function toggleStyle(id) {
         }
     }
 }
+
+filteredSection.addEventListener('click', function (event) {
+
+    if (event.target.classList.contains('btn-success')) {
+        const parentNode = event.target.parentNode.parentNode;
+
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const salaryAndType = parentNode.querySelector('.salaryAndType').innerText;
+        const badgeBtn = parentNode.querySelector('.badgeBtn').innerText;
+        const description = parentNode.querySelector('.description').innerText;
+
+        parentNode.querySelector('.badgeBtn').innerText = 'Interview';
+        parentNode.querySelector('.badgeBtn').className = 'btn btn-outline btn-success bg-[#EEF4FF] text-[16px] py-2 px-5 rounded-sm'
+
+        const cardInfo = {
+            companyName,
+            position,
+            salaryAndType,
+            badgeBtn: 'Interview',
+            description
+        }
+
+        const companyNameExist = interviewList.find(item => item.companyName == cardInfo.companyName);
+
+        if (!companyNameExist) {
+            interviewList.push(cardInfo);
+
+        }
+
+        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName);
+
+        calculateCount();
+
+        if (currentStatus == 'rejectedFilterBtn') {
+            renderRejected();
+        }
+
+
+    } else if (event.target.classList.contains('btn-error')) {
+
+        const parentNode = event.target.parentNode.parentNode;
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const salaryAndType = parentNode.querySelector('.salaryAndType').innerText;
+        const badgeBtn = parentNode.querySelector('.badgeBtn').innerText;
+        const description = parentNode.querySelector('.description').innerText;
+
+        parentNode.querySelector('.badgeBtn').innerText = 'Rejected';
+        parentNode.querySelector('.badgeBtn').className = 'btn btn-outline btn-error bg-[#EEF4FF] text-[16px] py-2 px-5 rounded-sm'
+
+        const cardInfo = {
+            companyName,
+            position,
+            salaryAndType,
+            badgeBtn: 'Rejected',
+            description
+        }
+
+        const companyNameExist = rejectedList.find(item => item.companyName == cardInfo.companyName);
+
+        if (!companyNameExist) {
+            rejectedList.push(cardInfo);
+
+        }
+
+        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName);
+
+        if (currentStatus == 'interviewFilterBtn') {
+            renderInterview();
+        }
+        calculateCount();
+    }
+
+    autoHideOrVisibleAndCount();
+
+
+});
+
+
 
 allCards.addEventListener('click', function (event) {
 
@@ -210,3 +302,22 @@ function renderRejected() {
         filteredSection.appendChild(div);
     }
 }
+
+
+
+function autoHideOrVisibleAndCount() {
+
+    if (interviewList.length == 0) {
+        noJobContainer.classList.remove('hidden');
+    } else if (rejectedList.length == 0) {
+        noJobContainer.classList.remove('hidden');
+    }
+
+    if (currentStatus === 'rejectedFilterBtn') {
+        availableJobCount.innerText = rejectedList.length + " of " + allCards.children.length + ' jobs';
+    }else if (currentStatus === 'interviewFilterBtn') {
+        availableJobCount.innerText = interviewList.length + " of " + allCards.children.length + ' jobs';
+    }
+}
+
+
