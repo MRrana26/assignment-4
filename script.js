@@ -98,7 +98,7 @@ function toggleStyle(id) {
         }
     }
 
-    
+
 }
 
 filteredSection.addEventListener('click', function (event) {
@@ -138,7 +138,6 @@ filteredSection.addEventListener('click', function (event) {
             renderRejected();
         }
 
-
     } else if (event.target.classList.contains('btn-error')) {
 
         const parentNode = event.target.parentNode.parentNode;
@@ -172,19 +171,25 @@ filteredSection.addEventListener('click', function (event) {
             renderInterview();
         }
         calculateCount();
+
     }
 
     autoHideOrVisibleAndCount();
 
-    
+
     for (const deleteButton of deleteBtn) {
         deleteButton.addEventListener('click', function (event) {
             event.target.parentNode.parentNode.parentNode.remove();
             // console.log(event.target.parentNode.parentNode.parentNode);
+            if (currentStatus === 'interviewFilterBtn') {
+                // availableJobCount.innerText = rejectedList.length + " of " + allCards.children.length + ' jobs';
+                interviewCal();
+            } else if (currentStatus === 'rejectedFilterBtn') {
+                // availableJobCount.innerText = interviewList.length + " of " + allCards.children.length + ' jobs';
+                rejectedCal();
+            }
         })
     }
-
-
 });
 
 
@@ -193,7 +198,6 @@ allCards.addEventListener('click', function (event) {
 
     if (event.target.classList.contains('btn-success')) {
         const parentNode = event.target.parentNode.parentNode;
-
 
         const companyName = parentNode.querySelector('.companyName').innerText;
         const position = parentNode.querySelector('.position').innerText;
@@ -226,8 +230,6 @@ allCards.addEventListener('click', function (event) {
         if (currentStatus == 'rejectedFilterBtn') {
             renderRejected();
         }
-
-
 
     } else if (event.target.classList.contains('btn-error')) {
         const parentNode = event.target.parentNode.parentNode;
@@ -283,7 +285,7 @@ function renderInterview() {
                         <p class="salaryAndType text=[#64748B] text-[14px]">${interview.salaryAndType}</p>
                         <button class="badgeBtn btn btn-outline btn-success bg-[#EEF4FF] text-[16px] font-medium py-2 px-5 rounded-sm">${interview.badgeBtn}</button>
                         <p class="description text-[#323B49] text-[14px]">${interview.description}</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -309,7 +311,7 @@ function renderRejected() {
                         <p class="salaryAndType text=[#64748B] text-[14px]">${rejected.salaryAndType}</p>
                         <button class="badgeBtn btn btn-outline btn-error bg-[#EEF4FF] text-[16px] font-medium py-2 px-5 rounded-sm">${rejected.badgeBtn}</button>
                         <p class="description text-[#323B49] text-[14px]">${rejected.description}</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -338,4 +340,19 @@ function autoHideOrVisibleAndCount() {
     }
 }
 
+function interviewCal() {
+    interviewCount.innerText = filteredSection.children.length;
+    let count = filteredSection.children.length;
+    if (count == 0) {
+        noJobContainer.classList.remove('hidden');
+    }
+}
+
+function rejectedCal() {
+    rejectedCount.innerText = filteredSection.children.length;
+    let count = filteredSection.children.length;
+    if (count == 0) {
+        noJobContainer.classList.remove('hidden');
+    }
+}
 

@@ -33,8 +33,8 @@
 
 <body class="bg-[#F1F2F4]">
 
-    <header class="container w-[80%] mx-auto py-4">
-        <h2 class="text-[#002C5C] font-bold text-[32px]">Job Application Tracker</h2>
+    <header class="container w-[90%] sm:w-[80%] mx-auto py-4">
+        <h2 class="text-[#002C5C] font-bold text-[1.2rem] sm:text-[32px]">Job Application Tracker</h2>
         <div class="container grid grid-cols-3 gap-3 pt-4">
             <div class="box bg-white px-5 py-2 rounded-lg">
                 <p class="text-[#323B49] font-medium pb-1">Total</p>
@@ -42,18 +42,18 @@
             </div>
 
             <div class="box bg-white px-5 py-2 rounded-lg">
-                <p class="text-[#323B49] font-medium pb-1">Interview</p>
+                <p class="text-[#323B49] sm:text-[1rem] text-[0.8rem] sm:font-medium pb-1">Interview</p>
                 <h3 id="interview-count" class="font-bold text-[#10B981] text-[24px]">0</h3>
             </div>
 
             <div class="box bg-white px-5 py-2 rounded-lg">
-                <p class="text-[#323B49] font-medium pb-1">Rejected</p>
+                <p class="text-[#323B49] sm:text-[1rem] text-[0.8rem] sm:font-medium pb-1">Rejected</p>
                 <h3 id="rejected-count" class="font-bold text-[#EF4444] text-[24px]">0</h3>
             </div>
         </div>
     </header>
 
-    <main class="container w-[80%] mx-auto py-4">
+    <main class="container w-[90%] sm:w-[80%] mx-auto py-4">
         <section class="mb-4">
             <div class="flex justify-between">
                 <h1 class="text-[20px] font-semibold text-[#002C5C] mb-6">Available Jobs</h1>
@@ -89,7 +89,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">Remote • Full-time • $130,000 - $175,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -106,7 +106,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -123,7 +123,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">Boston, MA • Full-time • $125,000 - $165,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -140,7 +140,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">Seattle, WA • Full-time • $140,000 - $190,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -157,7 +157,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">Austin, TX • Full-time • $110,000 - $150,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -174,7 +174,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">New York, NY • Full-time • $130,000 - $170,00</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -191,7 +191,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">Remote • Full-time • $120,000 - $160,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
@@ -208,7 +208,7 @@
                         <p class="salaryAndType text=[#64748B] text-[14px]">San Francisco, CA • Full-time • $130,000 - $175,000</p>
                         <button class="badgeBtn bg-[#EEF4FF] text-[14px] font-medium py-2 px-3 rounded-sm">NOT APPLIED</button>
                         <p class="description text-[#323B49] text-[14px]">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
-                        <div class="">
+                        <div class="sm:flex grid grid-cols-2 gap-2">
                             <button class="btn btn-outline btn-success">INTERVIEW</button>
                             <button class="btn btn-outline btn-error">REJECTED</button>
                         </div>
